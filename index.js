@@ -67,6 +67,44 @@ const rgbToHsl = (string) => {
   return `hsl(${h},${s}%,${l}%)`;
 }
 
+const hslToRgb = (string) => {
+  // forms an array of stringified numbers, up to 3 digits each
+  // then convert each stringified number to proper number
+  const HSL_NUMBER_ARR = string
+    .match(/\d{1,3}/g)
+    .map(numString => Number(numString));
+  // turn s and l into fractions of 1
+  let s = HSL_NUMBER_ARR[1] / 100;
+  let l = HSL_NUMBER_ARR[2] / 100;
+  let h = HSL_NUMBER_ARR[0];
+
+  let c = (1 - Math.abs(2 * l - 1)) * s,
+      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+      m = l - c / 2,
+      r = 0,
+      g = 0,
+      b = 0;
+  
+  if (0 <= h && h < 60) {
+    r = c; g = x; b = 0;  
+  } else if (60 <= h && h < 120) {
+    r = x; g = c; b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0; g = c; b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0; g = x; b = c;
+  } else if (240 <= h && h < 300) {
+    r = x; g = 0; b = c;
+  } else if (300 <= h && h < 360) {
+    r = c; g = 0; b = x;
+  }
+  r = Math.round((r + m) * 255);
+  g = Math.round((g + m) * 255);
+  b = Math.round((b + m) * 255);
+
+  return `rgb(${r},${g},${b})`;
+}
+
 const rgbToHex = (string) => {
   // forms an array of stringified numbers, up to 3 digits each
   const RGB_ARR = string.match(/\d{1,3}/g);
@@ -97,6 +135,11 @@ switch(CONVERSION_STRING) {
     hslStr = rgbToHsl(rgbStr);
     console.log(hslStr);
     break;
+  case "hslrgb":
+    rgbStr = hslToRgb(PARAM);
+    console.log(rgbStr);
+    break;
+  case "hslhex":
   case "hexrgb":
   default:
     rgbStr = hexToRgb(PARAM);
