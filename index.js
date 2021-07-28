@@ -61,8 +61,8 @@ const rgbToHsl = (string) => {
   }
 
   // Multiply l and s by 100
-  s = Math.floor(Math.abs(s * 100));
-  l = Math.floor(Math.abs(l * 100));
+  s = Math.round(Math.abs(s * 100));
+  l = Math.round(Math.abs(l * 100));
       
   return `hsl(${h},${s}%,${l}%)`;
 }
@@ -93,6 +93,10 @@ switch(CONVERSION_STRING) {
     console.log(hslStr);
     break;
   case "hexhsl":
+    rgbStr = hexToRgb(PARAM);
+    hslStr = rgbToHsl(rgbStr);
+    console.log(hslStr);
+    break;
   case "hexrgb":
   default:
     rgbStr = hexToRgb(PARAM);
