@@ -126,11 +126,22 @@ const rgbToHex = (string) => {
   return HEX_STR;
 }
 
-if (PARAM.indexOf('rgb(') === 0 && PARAM.match(/\d{1,3}/g).length === 3) {
+if (
+  PARAM.indexOf('rgb(') === 0 
+  && PARAM.indexOf(')') === PARAM.length - 1
+  && PARAM.match(/\d{1,3}/g).length === 3
+) {
   sourceType = 'rgb';
-} else if (PARAM.indexOf('hsl(') === 0 && PARAM.match(/\d{1,3}/g).length === 3) {
+} else if (
+  PARAM.indexOf('hsl(') === 0 
+  && PARAM.match(/\d{1,3}/g).length === 3
+  && PARAM.indexOf(')') === PARAM.length - 1
+) {
   sourceType = 'hsl';
-} else if (PARAM.indexOf('#') === 0 && PARAM.length === 7) {
+} else if (
+  PARAM.indexOf('#') === 0 
+  && PARAM.length === 7
+) {
   sourceType = 'hex';
 }
 
