@@ -1,5 +1,7 @@
-const CONVERSION_STRING = process.argv[2];
-const PARAM = process.argv[3];
+// to use, input: node index.js [colorSource] [colorTarget]
+// eg. node index.js rgb '#ffffff'
+const CONVERSION_STRING = process.argv[3];
+const PARAM = process.argv[2];
 let rgbStr = '';
 let hexStr = '';
 let hslStr = '';
@@ -15,6 +17,7 @@ const hexToRgb = (string) => {
   return `rgb(${RGB_ARR.join(',')})`;
 }
 
+// formula taken from: https://css-tricks.com/converting-color-spaces-in-javascript/
 const rgbToHsl = (string) => {
   // forms an array of stringified numbers, up to 3 digits each
   const RGB_ARR = string.match(/\d{1,3}/g);
@@ -68,6 +71,7 @@ const rgbToHsl = (string) => {
   return `hsl(${h},${s}%,${l}%)`;
 }
 
+// formula taken from: https://css-tricks.com/converting-color-spaces-in-javascript/
 const hslToRgb = (string) => {
   // forms an array of stringified numbers, up to 3 digits each
   // then convert each stringified number to proper number
