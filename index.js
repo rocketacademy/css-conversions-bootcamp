@@ -126,11 +126,11 @@ const rgbToHex = (string) => {
   return HEX_STR;
 }
 
-if (PARAM.indexOf('rgb(') === 0) {
+if (PARAM.indexOf('rgb(') === 0 && PARAM.match(/\d{1,3}/g).length === 3) {
   sourceType = 'rgb';
-} else if (PARAM.indexOf('hsl(') === 0) {
+} else if (PARAM.indexOf('hsl(') === 0 && PARAM.match(/\d{1,3}/g).length === 3) {
   sourceType = 'hsl';
-} else if (PARAM.indexOf('#') === 0) {
+} else if (PARAM.indexOf('#') === 0 && PARAM.length === 7) {
   sourceType = 'hex';
 }
 
