@@ -1,5 +1,5 @@
 // to use, input: node index.js [colorSource] [colorTarget]
-// eg. node index.js rgb '#ffffff'
+// eg. node index.js '#ffffff' hsl
 const CONVERSION_STRING = process.argv[3];
 const PARAM = process.argv[2];
 let rgbStr = '';
