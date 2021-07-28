@@ -3,6 +3,7 @@ const PARAM = process.argv[3];
 let rgbStr = '';
 let hexStr = '';
 let hslStr = '';
+let sourceType = '';
 
 const hexToRgb = (string) => {
   // removes "#", and splits string into string array up to 2 characters each
@@ -121,32 +122,62 @@ const rgbToHex = (string) => {
   return HEX_STR;
 }
 
-switch(CONVERSION_STRING) {
-  case "rgbhex":
-    hexStr = rgbToHex(PARAM);
-    console.log(hexStr);
-    break;
-  case "rgbhsl":
-    hslStr = rgbToHsl(PARAM);
-    console.log(hslStr);
-    break;
-  case "hexhsl":
-    rgbStr = hexToRgb(PARAM);
-    hslStr = rgbToHsl(rgbStr);
-    console.log(hslStr);
-    break;
-  case "hslrgb":
-    rgbStr = hslToRgb(PARAM);
-    console.log(rgbStr);
-    break;
-  case "hslhex":
-    rgbStr = hslToRgb(PARAM);
-    hexStr = rgbToHex(rgbStr);
-    console.log(hexStr);
-    break;
-  case "hexrgb":
-  default:
-    rgbStr = hexToRgb(PARAM);
-    console.log(rgbStr);
-    break;
+if (PARAM.indexOf('rgb(') === 0) {
+  sourceType = 'rgb';
+} else if (PARAM.indexOf('hsl(') === 0) {
+  sourceType = 'hsl';
+} else if (PARAM.indexOf('#') === 0) {
+  sourceType = 'hex';
+}
+
+if (sourceType === CONVERSION_STRING) {
+  console.log(PARAM);
+}
+else if (sourceType === '') {
+  console.log("Please enter a valid color type as the source.")
+} 
+else {
+  switch(CONVERSION_STRING) {
+    // convert to hex
+    case "hex":
+      if (sourceType === "rgb") {
+        hexStr = rgbToHex(PARAM);
+        console.log(hexStr);
+      }
+      // hsl 
+      else {
+        rgbStr = hslToRgb(PARAM);
+        hexStr = rgbToHex(rgbStr);
+        console.log(hexStr);
+      }
+      break;
+    // convert to rgb
+    case "rgb":
+      if (sourceType === "hex") {
+        rgbStr = hexToRgb(PARAM);
+        console.log(rgbStr);
+      }
+      // hsl
+      else {
+        rgbStr = hslToRgb(PARAM);
+        console.log(rgbStr);
+      }
+      break;
+    // convert to hsl
+    case "hsl":
+      if (sourceType === "rgb") {
+        hslStr = rgbToHsl(PARAM);
+        console.log(hslStr);
+      }
+      // hex 
+      else {
+        rgbStr = hexToRgb(PARAM);
+        hslStr = rgbToHsl(rgbStr);
+        console.log(hslStr);
+      }
+      break;
+    default:
+      console.log("Please enter a valid color type as the target.");
+      break;
+  }
 }
