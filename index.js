@@ -140,6 +140,10 @@ switch(CONVERSION_STRING) {
     console.log(rgbStr);
     break;
   case "hslhex":
+    rgbStr = hslToRgb(PARAM);
+    hexStr = rgbToHex(rgbStr);
+    console.log(hexStr);
+    break;
   case "hexrgb":
   default:
     rgbStr = hexToRgb(PARAM);
