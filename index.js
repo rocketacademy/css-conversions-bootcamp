@@ -49,5 +49,12 @@
 
 // import *  as css from './CSSConversions.js';
 // console.log(css.rgbToHex1(0, 51, 255));
-// // // #0033ff
+// //#0033ff
 // console.log(css.hexToRgb("#0033ff"));
+
+// import {add} from './myJsFile,js';
+
+import { showComments, showParams } from "./parseJS.js";
+​
+showComments('cssConvert.js');
+showParams('cssConvert.js');
