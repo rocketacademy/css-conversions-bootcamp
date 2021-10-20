@@ -1,11 +1,15 @@
-// Convert hex to RGB
-let hex = process.argv[2]
+let r = process.argv[2];
+let g = process.argv[3];
+let b = process.argv[4];
 
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? 
-    `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
-   : null;
-}
+function componentToHex(c) {
+  var hex = c.toString(16);
+  console.log('hex', hex);
+  return hex.length == 1 ? "0" + hex : hex;
+};
+      
+function rgbToHex(r, g, b) {
+  return ("#" + componentToHex(Number(r)) + componentToHex(Number(g)) + componentToHex(Number(b)));    
+};
 
-console.log(hexToRgb(hex)); 
+console.log(rgbToHex(r, g, b));
