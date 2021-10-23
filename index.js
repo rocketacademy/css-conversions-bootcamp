@@ -16,17 +16,8 @@ function hexToRgb(hex) {
 }
 
 const rgbOutput = hexToRgb(hexInput);
+console.log(`Input in hex: ${hexInput}
+Output in rgb:`)
 console.log(rgbOutput);
-// alert(hexToRgb("#0033ff").g); // "51";
 
 
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
-// alert(rgbToHex(0, 51, 255)); // #0033f
