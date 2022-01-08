@@ -1,13 +1,14 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true,
+    es2021: true,
   },
   extends: [
     'airbnb-base',
   ],
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaVersion: 13,
+    sourceType: 'module',
   },
   rules: {
     // Don't enforce control flow closing curly brace needs to be
@@ -20,5 +21,7 @@ module.exports = {
     'no-console': 'off',
     // Allow function param reassign for array or object elements or properties
     'no-param-reassign': ['error', { props: false }],
+    // Import from javascript files should always include extensions
+    'import/extensions': ['error', { js: 'always' }],
   },
 };
